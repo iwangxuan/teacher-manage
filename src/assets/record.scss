@@ -1,0 +1,38 @@
+.el-dialog {
+  .file-icon {
+    display: inline-block; 
+    img {
+      width: 100px;
+    }
+    .icon {
+      display: none;
+    }
+    
+    a {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+    }
+    .el-upload {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .file-icon:hover {
+    span {
+      display: inline-block;
+      position: absolute;
+      margin-left: -100px;
+      min-width: 20px;
+      min-height: 20px;
+      padding: 40px;
+      background-color: rgba($color: #c7c3c3, $alpha: 0.2);
+      .icon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+      }      
+    }
+  }
+}
