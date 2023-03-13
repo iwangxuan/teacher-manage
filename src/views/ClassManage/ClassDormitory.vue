@@ -1,14 +1,9 @@
 <!--
  * @Date: 2023-03-04 20:51:40
- * @LastEditTime: 2023-03-11 22:04:28
+ * @LastEditTime: 2023-03-13 10:14:13
 -->
 <template>
   <div>
-    <el-date-picker 
-      v-model="time"
-      value-format="x"
-      type="datetime"
-    />
     <el-button 
       type="primary"
       @click="addDormitoryRecord"
@@ -172,14 +167,16 @@ export default {
   },
   methods: {
     addDormitoryRecord() {
-        this.$axios({
-          method: 'post',
-          url: '/classDormitory/add',
-          data: {
-            classId: this.$route.params.classId,
-            time: this.time
-          }
-        }).then(res => this.getDormitoryVisitList())
+      this.dialogFormVisible = true
+      this.isModify = true
+        // this.$axios({
+        //   method: 'post',
+        //   url: '/classDormitory/add',
+        //   data: {
+        //     classId: this.$route.params.classId,
+        //     time: this.time
+        //   }
+        // }).then(res => this.getDormitoryVisitList())
     },
     getDormitoryVisitList() {
       this.$axios({

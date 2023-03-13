@@ -1,6 +1,6 @@
 <!--
  * @Date: 2023-03-04 20:51:40
- * @LastEditTime: 2023-03-11 22:11:33
+ * @LastEditTime: 2023-03-13 10:07:43
 -->
 <template>
   <div>
@@ -82,14 +82,16 @@
       </template>
     </el-table-column>
     </el-table>
-    <!-- <el-dialog
+    <el-dialog
       v-model="dialogFormVisible"
     >
-      <div v-show="!isModify"> -->
-        <!-- <p>听课时间：{{ curRecordTime }}</p>
-        <p>听课目的：{{ subject }}</p>
-        <p>听课记录：{{ contentRecord }}</p> -->
-        <!-- <div>
+    <div v-show="!isModify">
+       <p>听课开始时间：{{ curListen.startTime }}</p>
+       <p>听课开始时间：{{ curListen.endTime }}</p>
+        <p>教师：{{ curListen.teacherName }}</p>
+        <p>教室: {{ curListen.location }}</p>
+        <p>内容记录: {{ curListen.contentRecord }}</p>
+        <div>
           文件：
           <div
             v-for="file of files"
@@ -105,18 +107,23 @@
       </div>
       <div v-show="isModify">
         <el-date-picker 
-          v-model="curRecordTime"
+          v-model="curListen.startTime"
           value-format="x"
           type="datetime"
-        /> -->
-        <!-- <el-input
-          v-model="subject"
-          placeholder="请输入听课目的"
-        /> -->
-        <!-- <el-input
-          v-model="contentRecord" 
+        /> 
+        <el-date-picker 
+          v-model="curListen.endTime"
+          value-format="x"
+          type="datetime"
+        />
+        <el-input
+          v-model="curListen.teacherName"
+          placeholder="教师姓名"
+        />
+        <el-input
+          v-model="curListen.contentRecord"
           type="textarea"
-          placeholder="请输入关键内容记录"
+          placeholder="关键内容记录"
         />
         <div
           v-for="(file,index) in files"
@@ -151,7 +158,7 @@
           确认
         </el-button> 
       </div>
-    </el-dialog> -->
+    </el-dialog> 
   </div>
 </template>
 
@@ -183,6 +190,7 @@ export default {
     const token = sessionStorage.getItem("Token")
     const curRecordId = ref(-1)
     const files = ref([])
+    const curListen = ref('')
     const isModify = ref(false)
     return {
       startTime,
@@ -198,6 +206,7 @@ export default {
       token,
       curRecordId,
       files,
+      curListen,
       isModify
     }
   },
@@ -247,10 +256,7 @@ export default {
           listeningId
         }
       }).then(({ data }) => {
-        // this.curRecordTime = data.data.time
-        // this.subject = data.data.subject
-        // this.contentRecord = data.data.contentRecord
-        // this.files = JSON.parse(data.data.files) ? JSON.parse(data.data.files) : []
+        this.curListen = data.data
       })
     },
     delVisitedRecord(listeningId) {

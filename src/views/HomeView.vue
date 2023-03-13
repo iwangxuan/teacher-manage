@@ -1,11 +1,11 @@
 <!--
  * @Date: 2023-01-31 16:11:18
- * @LastEditTime: 2023-02-22 23:12:11
+ * @LastEditTime: 2023-03-12 19:40:36
 -->
 <template>
   <el-container class="layout">
     <el-header>
-      西安邮电大学xxx系统
+      <h1>学工管理系统</h1>
     </el-header>
     <el-container>
       <el-aside>
@@ -72,9 +72,6 @@ export default {
     return {
       infos
     }
-  },
-  methods: {
-    
   }
 } 
 </script>
@@ -82,9 +79,14 @@ export default {
 .layout {
   width: 100%;
   height: 100%;
+  .el-header {
+    z-index: 6;
+    h1 {
+      text-align: center;
+    }    
+  }
   .el-aside{
     background-color: #545c64;
-    height: 90vh;
   }
   .el-main{
     background-color: rgb(226, 226, 223);
